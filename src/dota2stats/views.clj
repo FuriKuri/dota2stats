@@ -32,6 +32,10 @@
      [:P "Content"]]
     (include-js "/js/bootstrap.js")]))
 
+(defn image-url [hero-name]
+  (let [hero (clojure.string/replace hero-name #"npc_dota_hero_" "")]
+    (str "http://media.steampowered.com/apps/dota2/images/heroes/" hero "_sb.png")))
+
 (defn hero-page [heros]
   (html5
    (header)
@@ -44,11 +48,12 @@
       [:table {:class "table"}
        [:tr
         [:th "ID"]
-        [:th "Name"]
-        [:th "Image"]]
+        [:th "Image"]
+        [:th "Name"]]
        (for [hero heros]
          [:tr
           [:td (hero "id")]
+          [:td [:img {:src (image-url (hero "name"))}]]
           [:td (hero "localized_name")]])]]]
     (include-js "/js/bootstrap.js")]))
 
