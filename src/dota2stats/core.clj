@@ -1,15 +1,16 @@
-(ns dota2stats.core
-  (:use dota2stats.views
-  	    compojure.core
-        [hiccup.middleware :only (wrap-base-url)]
-        [ring.adapter.jetty :only [run-jetty]])
-  (:require [compojure.route :as route]
-            [compojure.handler :as handler]
-            [compojure.response :as response]))
+ (ns dota2stats.core
+   (:use dota2stats.views
+         dota2stats.steam
+         compojure.core
+         [hiccup.middleware :only (wrap-base-url)]
+         [ring.adapter.jetty :only [run-jetty]])
+   (:require [compojure.route :as route]
+             [compojure.handler :as handler]
+             [compojure.response :as response]))
 
 (defroutes main-routes
   (GET "/" [] (index-page))
-  (GET "/heros" [] (hero-page))
+  (GET "/heros" [] (hero-page (heros)))
   (GET "/matches" [] (match-page))
   (route/resources "/")
   (route/not-found "Page not found"))

@@ -1,0 +1,5 @@
+(ns dota2stats.steam
+  (:use clojure.contrib.json))
+
+(defn print-that []
+  (println (read-json "{\"name\": \"Steven\"}")))
