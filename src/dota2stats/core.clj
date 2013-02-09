@@ -1,7 +1,8 @@
 (ns dota2stats.core
   (:use dota2stats.views
   	    compojure.core
-        [hiccup.middleware :only (wrap-base-url)])
+        [hiccup.middleware :only (wrap-base-url)]
+        [ring.adapter.jetty :only [run-jetty]])
   (:require [compojure.route :as route]
             [compojure.handler :as handler]
             [compojure.response :as response]))
@@ -14,3 +15,6 @@
 (def app
   (-> (handler/site main-routes)
       (wrap-base-url)))
+
+(defn -main [port]
+  (run-jetty app {:port (Integer. port)}))
