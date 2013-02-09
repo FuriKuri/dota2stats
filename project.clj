@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.4.0"]
   				 [compojure "1.1.5"]
+  				 [hiccup "1.0.2"]
   				 ]
   :plugins [[lein-swank "1.4.4"]
   			[lein-ring "0.7.1"]]
