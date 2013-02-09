@@ -3,7 +3,7 @@
 
 (defn header []
   [:head
-   [:title "Hello World"]
+   [:title "Dota2 Stats"]
    (include-css "/css/bootstrap.css")
    [:style "body {padding-top: 60px;}"]])
 
