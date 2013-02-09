@@ -22,12 +22,19 @@
           [:li (if (= active "Matches") {:class "active"}) [:a {:href "matches"} "Matches"]]
           [:li (if (= active "Heros") {:class "active"}) [:a {:href "heros"} "Heros"]]]]]]])
 
+(defn fork-me-banner []
+  [:a {:href "https://github.com/FuriKuri/dota2stats"}
+   [:img {:style "position: absolute; top: 41px; right: 0; border: 0;"
+          :src "https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+          :alt "Fork me on GitHub"}]])
+
 (defn index-page []
   (html5
    (header)
    [:body
     (navi-bar "Home")
     [:div {:class "container"}
+     (fork-me-banner)
      [:h1 "Dota 2 Stats"]
      [:P "Content"]]
     (include-js "/js/bootstrap.js")]))
@@ -42,6 +49,7 @@
    [:body
     (navi-bar "Heros")
     [:div {:class "container"}
+     (fork-me-banner)
      [:h1 "Heros"]     
      [:P
       [:table {:class "table"}
@@ -62,6 +70,7 @@
    [:body
     (navi-bar "Matches")
     [:div {:class "container"}
+     (fork-me-banner)
      [:h1 "Matches"]
      [:P "Content"]]
     (include-js "/js/bootstrap.js")]))
