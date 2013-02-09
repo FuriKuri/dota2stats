@@ -16,5 +16,6 @@
   (-> (handler/site main-routes)
       (wrap-base-url)))
 
-(defn -main [port]
-  (run-jetty app {:port (Integer. port)}))
+(defn -main []
+  (let [port (Integer/parseInt (get (System/getenv) "PORT" "8080"))]
+    (run-jetty app {:port port})))

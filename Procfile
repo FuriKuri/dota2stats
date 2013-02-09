@@ -1,1 +1,1 @@
-web: lein trampoline run -m dota2stats.core $PORT
+web: lein run -m dota2stats.core
