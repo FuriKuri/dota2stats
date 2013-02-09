@@ -42,8 +42,7 @@
    [:body
     (navi-bar "Heros")
     [:div {:class "container"}
-     [:h1 "Heros"]
-     
+     [:h1 "Heros"]     
      [:P
       [:table {:class "table"}
        [:tr
