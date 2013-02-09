@@ -10,6 +10,7 @@
 (defroutes main-routes
   (GET "/" [] (index-page))
   (GET "/heros" [] (hero-page))
+  (GET "/matches" [] (match-page))
   (route/resources "/")
   (route/not-found "Page not found"))
 
