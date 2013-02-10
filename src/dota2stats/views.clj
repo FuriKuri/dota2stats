@@ -167,7 +167,7 @@
 
    [:div
     [:div {:class "row tower"}
-     [:div {:class "span12"} [:large "Tower"]]
+     [:div {:class "span12"} [:strong "Tower"]]
      ]
     [:div {:class "row tower"}
      [:div {:class "span6"} "Radiant"]
