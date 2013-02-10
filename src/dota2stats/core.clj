@@ -11,7 +11,8 @@
 (defroutes main-routes
   (GET "/" [] (index-page))
   (GET "/heros" [] (hero-page (heros)))
-  (GET "/matches" [] (match-page))
+  (GET "/matches" [steamid] (matchs-page (matches steamid)))
+  (GET "/match" [matchid] (match-page (match matchid)))
   (route/resources "/")
   (route/not-found "Page not found"))
 
