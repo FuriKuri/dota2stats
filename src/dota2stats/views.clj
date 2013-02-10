@@ -6,7 +6,7 @@
   [:head
    [:title "Dota2 Stats"]
    (include-css "/css/bootstrap.css")
-   [:style "body {padding-top: 60px;}"]])
+   [:style "body {padding-top: 60px;} .tower {text-align: center; min-height: 40px;}"]])
 
 (defn navi-bar [active]
   [:div {:class "navbar navbar-inverse navbar-fixed-top"}
@@ -115,6 +115,41 @@
    12 "Least Played"
    13 "New Player Pool"})
 
+(def towers
+  {"Tier 1 Bot" 1
+   "Tier 2 Bot" 2
+   "Tier 3 Bot" 4
+   "Tier 1 Mid" 8
+   "Tier 2 Mid" 16
+   "Tier 3 Mid" 32
+   "Tier 1 Top" 64
+   "Tier 2 Top" 128
+   "Tier 3 Top" 256
+   "Ancient Bot" 512
+   "Ancient Top" 1024})
+
+(def barracks
+  {"Melee Bot" 1
+   "Ranged Bot" 2
+   "Melee Mid" 4
+   "Ranged Mid" 8
+   "Melee Top" 16
+   "Ranged Top" 32})
+
+(defn tower-status [tower status]
+  (let [x-bits (towers tower)
+        y-bits status]
+    (if (= 0 (bit-and y-bits x-bits))
+      [:span {:class "label label-important"} tower]
+      [:span {:class "label label-success"} tower])))
+
+(defn barrack-status [barrack status]
+  (let [x-bits (barracks barrack)
+        y-bits status]
+    (if (= 0 (bit-and y-bits x-bits))
+      [:span {:class "label label-important"} barrack]
+      [:span {:class "label label-success"} barrack])))
+
 (defn match-details [match]
   [:div
    [:p
@@ -128,7 +163,70 @@
     [:dt "Duration"]
     [:dd (str (quot (Integer. (match "duration")) 60) " min")]
     [:dt "First Blood Time"]
-    [:dd (str (quot (Integer. (match "first_blood_time")) 60) " min")]]]
+    [:dd (str (quot (Integer. (match "first_blood_time")) 60) " min")]]
+
+   [:div
+    [:div {:class "row tower"}
+     [:div {:class "span12"} [:large "Tower"]]
+     ]
+    [:div {:class "row tower"}
+     [:div {:class "span6"} "Radiant"]
+     [:div {:class "span6"} "Dire"]
+     ]
+    [:div {:class "row tower"}
+     [:div {:class "span2"} (tower-status "Tier 1 Top" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 1 Mid" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 1 Bot" (match "tower_status_radiant"))]
+
+     [:div {:class "span2"} (tower-status "Tier 1 Top" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 1 Mid" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 1 Bot" (match "tower_status_dire"))]
+     ]
+
+    [:div {:class "row tower"}
+     [:div {:class "span2"} (tower-status "Tier 2 Top" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 2 Mid" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 2 Bot" (match "tower_status_radiant"))]
+
+     [:div {:class "span2"} (tower-status "Tier 2 Top" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 2 Mid" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 2 Bot" (match "tower_status_dire"))]
+     ]
+
+    [:div {:class "row tower"}
+     [:div {:class "span2"} (tower-status "Tier 3 Top" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 3 Mid" (match "tower_status_radiant"))]
+     [:div {:class "span2"} (tower-status "Tier 3 Bot" (match "tower_status_radiant"))]
+
+     [:div {:class "span2"} (tower-status "Tier 3 Top" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 3 Mid" (match "tower_status_dire"))]
+     [:div {:class "span2"} (tower-status "Tier 3 Bot" (match "tower_status_dire"))]
+     ]
+
+    [:div {:class "row tower"}
+     [:div {:class "span1"} (barrack-status "Melee Top" (match "barracks_status_radiant"))]
+     [:div {:class "span1"} (barrack-status "Ranged Top" (match "barracks_status_radiant"))]
+     [:div {:class "span1"} (barrack-status "Melee Mid" (match "barracks_status_radiant"))]
+     [:div {:class "span1"} (barrack-status "Ranged Mid" (match "barracks_status_radiant"))]
+     [:div {:class "span1"} (barrack-status "Melee Bot" (match "barracks_status_radiant"))]
+     [:div {:class "span1"} (barrack-status "Ranged Bot" (match "barracks_status_radiant"))]
+
+     [:div {:class "span1"} (barrack-status "Melee Top" (match "barracks_status_dire"))]
+     [:div {:class "span1"} (barrack-status "Ranged Top" (match "barracks_status_dire"))]
+     [:div {:class "span1"} (barrack-status "Melee Mid" (match "barracks_status_dire"))]
+     [:div {:class "span1"} (barrack-status "Ranged Mid" (match "barracks_status_dire"))]
+     [:div {:class "span1"} (barrack-status "Melee Bot" (match "barracks_status_dire"))]
+     [:div {:class "span1"} (barrack-status "Ranged Bot" (match "barracks_status_dire"))]
+     ]
+
+    [:div {:class "row tower"}
+     [:div {:class "span3"} (tower-status "Ancient Top" (match "tower_status_radiant"))]
+     [:div {:class "span3"} (tower-status "Ancient Bot" (match "tower_status_radiant"))]
+     [:div {:class "span3"} (tower-status "Ancient Top" (match "tower_status_dire"))]
+     [:div {:class "span3"} (tower-status "Ancient Bot" (match "tower_status_dire"))]
+     ]
+    ]
+   ]
   )
 
 (defn match-page [match]
