@@ -53,7 +53,7 @@
      (fork-me-banner)
      [:h1 "Heros"]     
      [:P
-      [:table {:class "table"}
+      [:table {:class "table table-hover table-condensed"}
        [:tr
         [:th "ID"]
         [:th "Image"]
@@ -66,7 +66,7 @@
     (include-js "/js/bootstrap.js")]))
 
 (defn match-list [matches]
-  [:table {:class "table"}
+  [:table {:class "table table-hover"}
    [:tr
     [:th "Match Time"]
     [:th "Match ID"]]
