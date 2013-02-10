@@ -94,7 +94,7 @@
        [:fieldset
         [:legend "Find your last 25 matches"]
         [:label "Steam Id"]
-        [:input {:type "text" :placeholder "Your ingame name" :name "steamid"}]
+        [:input {:type "text" :placeholder "Your Steam ID" :name "steamid"}]
         [:br]
         [:button {:type "submit" :class "btn"} "Search"]]]]
      (if (not (nil? matches-result)) (show-matches matches-result))]
