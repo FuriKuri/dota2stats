@@ -126,7 +126,9 @@
     [:dt "Winner"]
     [:dd (if (= (match "radiant_win") true) "Radiant" "Dire")]
     [:dt "Duration"]
-    [:dd (str (quot (Integer. (match "duration")) 60) " min")]]]
+    [:dd (str (quot (Integer. (match "duration")) 60) " min")]
+    [:dt "First Blood Time"]
+    [:dd (str (quot (Integer. (match "first_blood_time")) 60) " min")]]]
   )
 
 (defn match-page [match]
