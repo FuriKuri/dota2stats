@@ -1,5 +1,6 @@
 (ns dota2stats.matchview
   (:use dota2stats.towerview
+  	    dota2stats.playerview
         dota2stats.views
         [hiccup core page]))
 
@@ -68,6 +69,7 @@
     [:dd (str (quot (Integer. (match "duration")) 60) " min")]
     [:dt "First Blood Time"]
     [:dd (str (quot (Integer. (match "first_blood_time")) 60) " min")]]
+   (player-details match) 
    (tower-status-container match)
    ]
   )
