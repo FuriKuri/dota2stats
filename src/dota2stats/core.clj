@@ -1,10 +1,12 @@
- (ns dota2stats.core
-   (:use dota2stats.views
-         dota2stats.steam
-         compojure.core
-         [hiccup.middleware :only (wrap-base-url)]
-         [ring.adapter.jetty :only [run-jetty]])
-   (:require [compojure.route :as route]
+(ns dota2stats.core
+  (:use dota2stats.steam
+        dota2stats.mainview
+        dota2stats.heroview
+        dota2stats.matchview
+        compojure.core
+        [hiccup.middleware :only (wrap-base-url)]
+        [ring.adapter.jetty :only [run-jetty]])
+  (:require [compojure.route :as route]
              [compojure.handler :as handler]
              [compojure.response :as response]))
 
