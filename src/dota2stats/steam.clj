@@ -9,7 +9,7 @@
     ((heros-json "result") "heroes")))
 
 (defn match [match-id]
-  (let [steam-key (get (System/getenv) "STEAM_KEY" "910E492765773B6FC0F361F43B228790")
+  (let [steam-key (get (System/getenv) "STEAM_KEY")
         match-url (str "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=" steam-key "&match_id=" match-id)
         match-json (json/read-str ((client/get match-url) :body))]
     (match-json "result")))
@@ -18,7 +18,7 @@
 
 (defn matches [steam-id]
   (if (not (clojure.string/blank? steam-id))
-    (let [steam-key (get (System/getenv) "STEAM_KEY" "910E492765773B6FC0F361F43B228790")
+    (let [steam-key (get (System/getenv) "STEAM_KEY")
           matches-url (str "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=" steam-key "&account_id=" steam-id)
           matches-json (json/read-str ((client/get matches-url) :body))
           matches-result (matches-json "result")]
