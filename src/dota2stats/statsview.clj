@@ -39,7 +39,9 @@
     ;; [:div {:class "stats"}]
      ;; (if (not (nil? stats)) (show-stats stats))
      ]
-    [:div {:id "stats"}]
-    (include-js "/js/bootstrap.js")
-    (include-js "/js/flotr2.min.js")
-     (show-stats stats)]))
+    (if (not (nil? stats))
+      [:p
+       [:div {:id "stats"}]
+       (include-js "/js/flotr2.min.js")
+       (show-stats stats)])
+      (include-js "/js/bootstrap.js")]))
