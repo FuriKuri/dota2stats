@@ -14,6 +14,8 @@
         match-json (json/read-str ((client/get match-url) :body))]
     (match-json "result")))
 
+(def match-cache (memoize match))
+
 (defn matches [steam-id]
   (if (not (clojure.string/blank? steam-id))
     (let [steam-key (get (System/getenv) "STEAM_KEY" "910E492765773B6FC0F361F43B228790")
@@ -31,6 +33,6 @@
 (defn last-match-details [steam-id]
   (if (not (clojure.string/blank? steam-id))
     (let [match-ids (map #(% "match_id") ((matches steam-id) "matches"))
-          match-details (map #(match %) match-ids)]
+          match-details (map #(match-cache %) match-ids)]
       (map #(match-player-details % (read-string steam-id)) match-details))
     nil))
