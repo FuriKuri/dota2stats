@@ -1,6 +1,6 @@
 (ns dota2stats.heroview
   (:use [dota2stats.views]
-    [hiccup core page]))
+        [hiccup core page]))
 
 
 (defn hero-page [heros]

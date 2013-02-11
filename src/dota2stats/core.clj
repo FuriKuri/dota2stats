@@ -3,6 +3,7 @@
         dota2stats.mainview
         dota2stats.heroview
         dota2stats.matchview
+        dota2stats.statsview
         compojure.core
         [hiccup.middleware :only (wrap-base-url)]
         [ring.adapter.jetty :only [run-jetty]])
@@ -15,6 +16,7 @@
   (GET "/heros" [] (hero-page (heros)))
   (GET "/matches" [steamid] (matchs-page (matches steamid)))
   (GET "/match" [matchid] (match-page (match matchid)))
+  (GET "/stats" [steamid] (stats-page (last-match-details steamid)))
   (route/resources "/")
   (route/not-found "Page not found"))
 

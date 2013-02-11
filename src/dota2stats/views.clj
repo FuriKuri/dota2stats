@@ -6,7 +6,7 @@
   [:head
    [:title "Dota2 Stats"]
    (include-css "/css/bootstrap.css")
-   [:style "body {padding-top: 60px;} .tower {text-align: center; min-height: 40px;}"]])
+   [:style "body {padding-top: 60px;} .tower {text-align: center; min-height: 40px;} #stats { width : 600px; height: 384px; margin: 8px auto; }"]])
 
 (defn navi-bar [active]
   [:div {:class "navbar navbar-inverse navbar-fixed-top"}
@@ -15,12 +15,14 @@
      [:button {:type "button" :class "btn btn-navbar" :data-toggle "collapse" :data-target ".nav-collapse"}
       [:span {:class "icon-bar"}]
       [:span {:class "icon-bar"}]
+      [:span {:class "icon-bar"}]
       [:span {:class "icon-bar"}]]
      [:a {:href "#" :class "brand"} "Dota 2 Stats"]
         [:div {:class "nav-collapse collapse"}
          [:ul {:class "nav"}
           [:li (if (= active "Home") {:class "active"}) [:a {:href "/"} "Home"]]
           [:li (if (= active "Matches") {:class "active"}) [:a {:href "matches"} "Matches"]]
+          [:li (if (= active "Stats") {:class "active"}) [:a {:href "stats"} "Stats"]]
           [:li (if (= active "Heros") {:class "active"}) [:a {:href "heros"} "Heros"]]]]]]])
 
 (defn fork-me-banner []
