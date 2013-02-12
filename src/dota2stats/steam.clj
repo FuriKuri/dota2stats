@@ -33,6 +33,6 @@
 (defn last-match-details [steam-id]
   (if (not (clojure.string/blank? steam-id))
     (let [match-ids (map #(% "match_id") ((matches steam-id) "matches"))
-          match-details (map #(match-cache %) match-ids)]
+          match-details (pmap #(match-cache %) match-ids)]
       (map #(match-player-details % (read-string steam-id)) match-details))
     nil))
